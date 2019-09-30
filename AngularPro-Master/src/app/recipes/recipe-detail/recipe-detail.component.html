@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-xs-12">
+    <img src="{{selectedRecipe?.imagePath}}" alt="" class="img-responsive">
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{selectedRecipe?.name}}</h1>
+  </div>
+  <div class="col-xs-12">
+    <button class="btn btn-success">To Shopping List</button>
+    <button class="btn btn-primary">Edit</button>
+    <button class="btn btn-danger">Delete</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <p>{{selectedRecipe?.description}}</p>
+    <!--<p>{{selectedRecipe?.offerDate}}</p>-->
+    <!--<p>{{selectedRecipe?.offerExpire | date: 'MM/yy'}}</p>-->
+    <!--<p>{{selectedRecipe?.price | currency: 'EUR'}}</p>-->
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    Ingredients
+  </div>
+</div>
+<form (ngSubmit)="addRecipe(f)" #f=ngForm>
+
+  <label for="Recipe">Recipe</label>
+  <input type="text" class="form-control " #name=ngModel  required minlength="3" ngModel name="Recipe" style="width: 60%;"
+    placeholder="Enter Recipe">
+
+    <div *ngIf=name.invalid>
+        <div *ngIf=name.errors.required >
+          Price is empty
+        </div >
+        <div *ngIf=name.errors.minlength >
+            The length of the name must be more than 3
+          </div>
+        </div>
+  <!-- <div *ngIf=name.touched> 
+        </div> -->
+  <label for="exampleInputEmail1">Email address</label>
+  <input type="text" class="form-control" #email=ngModel required email ngModel name="email" style="width: 60%;"
+    placeholder="Enter email">
+  
+  <div *ngIf=email.invalid>
+    <div *ngIf=email.errors.required>
+    Need to enter an email
+  </div>
+  <div *ngIf=email.errors.email>
+      Invalid Email
+    </div>
+  </div>
+  <label for="Price">Price</label>
+  <input type="number" class="form-control" #price=ngModel required  ngModel name="price" style="width: 60%;"
+    placeholder="Price">
+  <div *ngIf=!price.valid >
+    Price is empty
+  </div>
+
+  <label for="Ingredients">Ingredients</label>
+  <input type="text" class="form-control" #ing=ngModel required ngModel name="ingredients" style="width: 60%;"
+    placeholder="Ingredients">
+  <div *ngIf=!ing.valid>
+    Invalid Ingredient
+  </div>
+  <button type="submit" [disabled]="f.invalid" class="btn btn-primary">Submit</button>
+</form>
