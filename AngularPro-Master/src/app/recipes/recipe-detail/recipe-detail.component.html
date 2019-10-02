@@ -46,7 +46,7 @@
   <label for="exampleInputEmail1">Email address</label>
   <input type="text" class="form-control" #email=ngModel required email ngModel name="email" style="width: 60%;"
     placeholder="Enter email">
-  
+    
   <div *ngIf=email.invalid>
     <div *ngIf=email.errors.required>
     Need to enter an email
@@ -70,3 +70,16 @@
   </div>
   <button type="submit" [disabled]="f.invalid" class="btn btn-primary">Submit</button>
 </form>
+<hr>
+<button class="btn btn-primary" (click)="loadRecipe()">Load Recipes</button><br>
+<br><br>
+<ul>
+  <li *ngFor="let ud of lodedPosts" >
+    <h4><b>{{ud.Recipe | uppercase}}</b></h4>
+    <ul>
+      <li>{{ud.email}}</li> <li> {{ud.price | currency}}</li> <li>{{ud.ingredients}}</li>
+      
+    </ul>
+  </li>
+</ul> 
+<hr>
